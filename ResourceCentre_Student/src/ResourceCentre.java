@@ -217,19 +217,20 @@ public class ResourceCentre {
 	
 	public static boolean doLoanChromebook(ArrayList<Chromebook> chromebookList, String tag, String dueDate) {
 		// write your code here
-		for (Chromebook a : chromebookList) {
-			int found = 0;
-			if (a.getAssetTag()==tag) {
-				a.setDueDate(dueDate);
-				found++;
-			}
-			if (found>0) {
-				System.out.println("Chromebook "+tag+" loaned out");
-			} else {
-				System.out.println("Invalid asset tag");
+		boolean isLoaned = false;
+
+		for (int i = 0; i < chromebookList.size(); i++) {
+			if (tag.equalsIgnoreCase(chromebookList.get(i).getAssetTag())
+					&& chromebookList.get(i).getIsAvailable() == true) {
+				
+				chromebookList.get(i).setIsAvailable(false);
+				chromebookList.get(i).setDueDate(dueDate);
+				
+				isLoaned = true;
+				
 			}
 		}
-		return true;
+		return isLoaned;
 	}
 	
 	public static void loanChromebook(ArrayList<Chromebook> chromebookList) {
