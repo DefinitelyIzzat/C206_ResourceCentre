@@ -61,8 +61,9 @@ public class ResourceCentreTest {
 		//fail("Not yet implemented");
 		// write your code here 
 		ResourceCentre.addChromebook(chromebookList, cb1);
+		ResourceCentre.addChromebook(chromebookList, cb2);
 		
-		assertEquals("Test that camcorder arraylist size is 1", 1, chromebookList.size());
+		assertEquals("Test that camcorder arraylist size is 2", 2, chromebookList.size());
 	}
 	
 	@Test
