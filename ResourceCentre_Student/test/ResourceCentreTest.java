@@ -60,9 +60,7 @@ public class ResourceCentreTest {
 	public void testAddChromebook() {
 		//fail("Not yet implemented");
 		// write your code here 
-		
-		// test - izzat
-		// test - Junwei a
+		assertNotNull("Not yet implemented", chromebookList);
 	}
 	
 	@Test
