@@ -62,7 +62,7 @@ public class ResourceCentreTest {
 		// write your code here 
 		
 		// test - izzat
-		// test - Junwei
+		// test - Junwei a
 	}
 	
 	@Test
