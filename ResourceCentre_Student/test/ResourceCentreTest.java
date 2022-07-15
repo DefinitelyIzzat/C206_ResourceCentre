@@ -62,8 +62,10 @@ public class ResourceCentreTest {
 		// write your code here 
 		ResourceCentre.addChromebook(chromebookList, cb1);
 		ResourceCentre.addChromebook(chromebookList, cb2);
+		ResourceCentre.addChromebook(chromebookList, cb3);
+
 		
-		assertEquals("Test that camcorder arraylist size is 2", 2, chromebookList.size());
+		assertEquals("Test that camcorder arraylist size is 3", 3, chromebookList.size());
 	}
 	
 	@Test
@@ -94,7 +96,23 @@ public class ResourceCentreTest {
 	public void testRetrieveAllChromebook() {
 		//fail("Not yet implemented");
 		// write your code here
+		assertNotNull("Test if there is valid Camcorder arraylist to add to", chromebookList);
+		
+		String allChromebook= ResourceCentre.retrieveAllChromebook(chromebookList);
+		String testOutput = "";
+		assertEquals("Check that ViewAllChromebooklist", testOutput, allChromebook);
+				
+		ResourceCentre.addChromebook(chromebookList, cb1);
+		ResourceCentre.addChromebook(chromebookList, cb2);
+		assertEquals("Test if that Chromebook arraylist size is 2?", 2, chromebookList.size());
+		
+		allChromebook= ResourceCentre.retrieveAllChromebook(chromebookList);
 
+		testOutput = String.format("%-10s %-30s %-10s %-10s %-20s\n","CB0011", "My Google Chromebook 1st", "Yes", "", "");
+		testOutput += String.format("%-10s %-30s %-10s %-10s %-20s\n","CB0012", "SAMSUNG Chromebook 4+", "Yes", "", "");
+	
+		assertEquals("Check that ViewAllChromebooklist", testOutput, allChromebook);
+		
 	}
 
 	@Test
@@ -135,30 +153,30 @@ public class ResourceCentreTest {
 		// write your code here
 
 		//boundary
-				assertNotNull("test if there is valid Chromebook arraylist to loan from", chromebookList);
+		assertNotNull("test if there is valid Chromebook arraylist to loan from", chromebookList);
 				
-				ResourceCentre.addChromebook(chromebookList, cb1);
+		ResourceCentre.addChromebook(chromebookList, cb1);
 				
-				// normal
-				Boolean ok = ResourceCentre.doLoanChromebook(chromebookList, "CB0011", "8-8-2020" );
-				assertTrue("Test if an available item is ok to loan?", ok);
-				assertFalse(chromebookList.get(0).getIsAvailable());
-				assertEquals(chromebookList.get(0).getDueDate(),"8-8-2020");
+		// normal
+		Boolean ok = ResourceCentre.doLoanChromebook(chromebookList, "CB0011", "8-8-2020" );
+		assertTrue("Test if an available item is ok to loan?", ok);
+		assertFalse(chromebookList.get(0).getIsAvailable());
+		assertEquals(chromebookList.get(0).getDueDate(),"8-8-2020");
 				
 						
-				//error condition
-				ok = ResourceCentre.doLoanChromebook(chromebookList, "CB0011", "8-8-2020" );
-				assertFalse("Test if an same item is NOT ok to loan again?", ok);	
+		//error condition
+		ok = ResourceCentre.doLoanChromebook(chromebookList, "CB0011", "8-8-2020" );
+		assertFalse("Test if an same item is NOT ok to loan again?", ok);	
 				
-				//error condition
-				ResourceCentre.addChromebook(chromebookList, cb2);	
-				cb2.setIsAvailable(false);
-				ok = ResourceCentre.doLoanChromebook(chromebookList, "CB0012", "8-8-2020" );
-				assertFalse("Test that un-available item is NOT ok to loan?", ok);
+		//error condition
+		ResourceCentre.addChromebook(chromebookList, cb2);	
+		cb2.setIsAvailable(false);
+		ok = ResourceCentre.doLoanChromebook(chromebookList, "CB0012", "8-8-2020" );
+		assertFalse("Test that un-available item is NOT ok to loan?", ok);
 				
-				//error condition
-				ok = ResourceCentre.doLoanChromebook(chromebookList, "CB0013", "8-8-2020" );
-				assertFalse("Test that non-esiting item is NOT ok to loan?", ok);
+		//error condition
+		ok = ResourceCentre.doLoanChromebook(chromebookList, "CB0013", "8-8-2020" );
+		assertFalse("Test that non-esiting item is NOT ok to loan?", ok);
 		
 	}
 	
@@ -200,7 +218,7 @@ public class ResourceCentreTest {
 		assertTrue("Test if loaned out amcorder CC0012 is returned- true", isReturned);
 		
 		//error
-		isReturned = ResourceCentre.doReturnChromebook(chromebookList, "CC0013");
+		isReturned = ResourceCentre.doReturnChromebook(chromebookList, "CB0013");
 		assertFalse("Test if non-existing amcorder CC0013 is returned - false?", isReturned);
 	}
 	
@@ -210,6 +228,7 @@ public class ResourceCentreTest {
 		cc2 = null;
 		cb1 = null;
 		cb2 = null;
+		cb3 = null;
 		camcorderList = null;
 		chromebookList = null;
 
