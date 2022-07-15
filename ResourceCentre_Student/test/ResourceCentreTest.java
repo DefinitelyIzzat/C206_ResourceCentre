@@ -92,7 +92,7 @@ public class ResourceCentreTest {
 	public void testRetrieveAllChromebook() {
 		//fail("Not yet implemented");
 		// write your code here
-		// test 123
+		// test 1232
 	}
 
 	@Test
